@@ -1,0 +1,23 @@
+/*
+Place your custom CSS here
+*/
+
+
+.mendixContainer div,
+.mendixContainer span,
+.mendixContainer h1,
+.mendixContainer h2,
+.mendixContainer h3,
+.mendixContainer h4,
+.mendixContainer h5,
+.mendixContainer h6 {
+    display: block;
+    line-height: 1.5; /* Adjust this based on your design */
+    max-height: none;
+    overflow: hidden;
+}
+
+.my-component {
+    color: var(--dynamic-color);
+    font-size: var(--dynamic-font-size);
+  }

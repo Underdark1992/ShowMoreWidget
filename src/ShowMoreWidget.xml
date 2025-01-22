@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="auraq.showmorewidget.ShowMoreWidget" pluginWidget="true" needsEntityContext="true"
+    offlineCapable="true"
+    supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Show More Widget</name>
+    <description>A widget to show or hide text</description>
+    <icon />
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="Display">
+                <systemProperty key="Label" />
+                <property key="textArea" type="textTemplate" multiline="true">
+                    <caption>Input Title</caption>
+                    <description></description>
+                </property>
+                <property key="textType" type="enumeration" defaultValue="span">
+                    <caption>Render Mode</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="div">Div</enumerationValue>
+                        <enumerationValue key="span">Text</enumerationValue>
+                        <enumerationValue key="p">Paragrap</enumerationValue>
+                        <enumerationValue key="h1">Heading 1</enumerationValue>
+                        <enumerationValue key="h2">Heading 2</enumerationValue>
+                        <enumerationValue key="h3">Heading 3</enumerationValue>
+                        <enumerationValue key="h4">Heading 4</enumerationValue>
+                        <enumerationValue key="h5">Heading 5</enumerationValue>
+                        <enumerationValue key="h6">Heading 6</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Truncate">
+                <property key="hideByDefault" type="enumeration" defaultValue="true">
+                    <caption>Hide By Default</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="true">True</enumerationValue>
+                        <enumerationValue key="false">False</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="truncType" type="enumeration" defaultValue="charCount">
+                    <caption>Truncate Type</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="charCount">Character</enumerationValue>
+                        <enumerationValue key="lineCount">Line</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="charInteger" type="integer" defaultValue="50">
+                    <caption>Character Count</caption>
+                    <description></description>
+                </property>
+                <property key="lineInteger" type="integer" defaultValue="3">
+                    <caption>Line Count</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Button">
+                <property key="buttonOrLinkorIcon" type="enumeration" defaultValue="buttonType">
+                    <caption>Render Mode</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="buttonType">Button</enumerationValue>
+                        <enumerationValue key="iconType">Icon</enumerationValue>
+                        <enumerationValue key="linkType">Link</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="cardIconExpand" type="icon" required="false">
+                    <caption>Expand Icon</caption>
+                    <description></description>
+                </property>
+                <property key="cardIconCollapse" type="icon" required="false">
+                    <caption>Collapse Icon</caption>
+                    <description></description>
+                </property>
+                <property key="buttonDisplay" type="enumeration" defaultValue="default">
+                    <caption>Button Style</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="default">Default</enumerationValue>
+                        <enumerationValue key="inverse">Inverse</enumerationValue>
+                        <enumerationValue key="primary">Primary</enumerationValue>
+                        <enumerationValue key="info">Info</enumerationValue>
+                        <enumerationValue key="success">Success</enumerationValue>
+                        <enumerationValue key="warning">Warning</enumerationValue>
+                        <enumerationValue key="danger">Danger</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Caption">
+                <property key="showMore" type="string" defaultValue="Show More">
+                    <caption>Expand</caption>
+                    <description></description>
+                </property>
+                <property key="showLess" type="string" defaultValue="Show Less">
+                    <caption>Collapse</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Visibility">
+                <systemProperty key="Visibility" />
+            </propertyGroup>
+            <propertyGroup caption="Editability">
+                <systemProperty key="Editability" />
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Common">
+            <systemProperty key="TabIndex"></systemProperty>
+        </propertyGroup>
+        <propertyGroup caption="Styling">
+            <propertyGroup caption="Style">
+                <property key="buttonExtraStyling" type="string" required="false">
+                    <caption>Button Style</caption>
+                    <description></description>
+                </property>
+                <property key="linkExtraStyling" type="string" required="false">
+                    <caption>Link Style</caption>
+                    <description></description>
+                </property>
+                <property key="textExtraStyling" type="string" required="false">
+                    <caption>Text Style</caption>
+                    <description></description>
+                </property>
+                <property key="iconExtraStyling" type="string" required="false">
+                    <caption>Icon Style</caption>
+                    <description>These will be appended to the selected button/link/icon/text style respectively.</description>
+                </property>
+
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>
