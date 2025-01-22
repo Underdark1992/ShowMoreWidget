@@ -13,6 +13,9 @@ A text widget which gives the ability to the developer to truncate text based on
 ## Usage
 When a text needs to be displayed without taking up too much screen space.
 
+## Demo
+[Show more widget demo](https://showmorewidgetdemo-sandbox.mxapps.io/index.html?profile=Responsive)
+
 ## Issues, suggestions and feature requests
 [Report issues](https://github.com/Underdark1992/ShowMoreWidget/issues)
 
