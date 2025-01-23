@@ -13,7 +13,7 @@ export function preview({}: ShowMoreWidgetPreviewProps): ReactElement {
             charCount={0}
             lineCount={0}
             truncType={""}
-            buttonOrLinkorIcon={""}
+            buttonLinkIconPreviewMode={""}
             cardIconExpand={undefined}
             cardIconCollapse={undefined}
             showMoreText={""}

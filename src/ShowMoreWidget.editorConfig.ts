@@ -119,11 +119,14 @@ export function getProperties(
         hidePropertiesIn(defaultProperties, _values, ["charInteger"]);
     }
 
-    if(_values.buttonOrLinkorIcon == "linkType") {
+    if(_values.buttonLinkIconPreviewMode == "linkType") {
         hidePropertiesIn(defaultProperties, _values, ["buttonDisplay", "cardIconExpand", "cardIconCollapse"])
     }
-    else if(_values.buttonOrLinkorIcon == "iconType") {
+    else if(_values.buttonLinkIconPreviewMode == "iconType") {
         hidePropertiesIn(defaultProperties, _values, ["buttonDisplay", "showMore", "showLess"])
+    }
+    else if(_values.buttonLinkIconPreviewMode == "previewMode"){
+        hidePropertiesIn(defaultProperties, _values, ["cardIconExpand", "cardIconCollapse", "buttonDisplay", "showMore", "showLess"])
     }
     else {
         hidePropertiesIn(defaultProperties, _values, ["cardIconExpand", "cardIconCollapse", ])
@@ -136,7 +139,7 @@ export function check(_values: ShowMoreWidgetPreviewProps): Problem[] {
     const errors: Problem[] = [];
 
 
-    if(_values.cardIconExpand == null && _values.buttonOrLinkorIcon == "iconType") {
+    if(_values.cardIconExpand == null && _values.buttonLinkIconPreviewMode == "iconType") {
         errors.push({
             property: "cardIconExpand",
             message: "This is required.",
@@ -144,7 +147,7 @@ export function check(_values: ShowMoreWidgetPreviewProps): Problem[] {
         })
     }
 
-    if(_values.cardIconCollapse == null && _values.buttonOrLinkorIcon == "iconType") {
+    if(_values.cardIconCollapse == null && _values.buttonLinkIconPreviewMode == "iconType") {
         errors.push({
             property: "cardIconCollapse",
             message: "This is required.",

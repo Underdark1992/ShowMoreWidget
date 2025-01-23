@@ -11,7 +11,7 @@ export type HideByDefaultEnum = "true" | "false";
 
 export type TruncTypeEnum = "charCount" | "lineCount";
 
-export type ButtonOrLinkorIconEnum = "buttonType" | "iconType" | "linkType";
+export type ButtonLinkIconPreviewModeEnum = "previewMode" | "buttonType" | "iconType" | "linkType";
 
 export type ButtonDisplayEnum = "default" | "inverse" | "primary" | "info" | "success" | "warning" | "danger";
 
@@ -25,7 +25,7 @@ export interface ShowMoreWidgetContainerProps {
     truncType: TruncTypeEnum;
     charInteger: number;
     lineInteger: number;
-    buttonOrLinkorIcon: ButtonOrLinkorIconEnum;
+    buttonLinkIconPreviewMode: ButtonLinkIconPreviewModeEnum;
     cardIconExpand?: DynamicValue<WebIcon>;
     cardIconCollapse?: DynamicValue<WebIcon>;
     buttonDisplay: ButtonDisplayEnum;
@@ -47,7 +47,7 @@ export interface ShowMoreWidgetPreviewProps {
     truncType: TruncTypeEnum;
     charInteger: number | null;
     lineInteger: number | null;
-    buttonOrLinkorIcon: ButtonOrLinkorIconEnum;
+    buttonLinkIconPreviewMode: ButtonLinkIconPreviewModeEnum;
     cardIconExpand: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; iconUrl: string; } | { type: "icon"; iconClass: string; } | undefined;
     cardIconCollapse: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; iconUrl: string; } | { type: "icon"; iconClass: string; } | undefined;
     buttonDisplay: ButtonDisplayEnum;

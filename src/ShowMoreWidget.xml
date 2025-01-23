@@ -58,10 +58,11 @@
                 </property>
             </propertyGroup>
             <propertyGroup caption="Button">
-                <property key="buttonOrLinkorIcon" type="enumeration" defaultValue="buttonType">
+                <property key="buttonLinkIconPreviewMode" type="enumeration" defaultValue="buttonType">
                     <caption>Render Mode</caption>
                     <description></description>
                     <enumerationValues>
+                        <enumerationValue key="previewMode">Preview Mode</enumerationValue>
                         <enumerationValue key="buttonType">Button</enumerationValue>
                         <enumerationValue key="iconType">Icon</enumerationValue>
                         <enumerationValue key="linkType">Link</enumerationValue>

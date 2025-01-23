@@ -11,8 +11,7 @@ Place your custom CSS here
 .mendixContainer h4,
 .mendixContainer h5,
 .mendixContainer h6 {
-    display: block;
-    line-height: 1.5; /* Adjust this based on your design */
+    display: block;    
     max-height: none;
     overflow: hidden;
 }

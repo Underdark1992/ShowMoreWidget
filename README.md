@@ -18,4 +18,3 @@ When a text needs to be displayed without taking up too much screen space.
 
 ## Issues, suggestions and feature requests
 [Report issues](https://github.com/Underdark1992/ShowMoreWidget/issues)
-

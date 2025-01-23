@@ -12,7 +12,7 @@ export function ShowMoreWidget(props: ShowMoreWidgetContainerProps): ReactElemen
             charCount={props.charInteger}
             lineCount={props.lineInteger}
             truncType={props.truncType}
-            buttonOrLinkorIcon={props.buttonOrLinkorIcon}
+            buttonLinkIconPreviewMode={props.buttonLinkIconPreviewMode}
             cardIconExpand={props.cardIconExpand}
             cardIconCollapse={props.cardIconCollapse}
             showMoreText={props.showMore}
