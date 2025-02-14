@@ -21,7 +21,7 @@
                     <enumerationValues>
                         <enumerationValue key="div">Div</enumerationValue>
                         <enumerationValue key="span">Text</enumerationValue>
-                        <enumerationValue key="p">Paragrap</enumerationValue>
+                        <enumerationValue key="p">Paragraph</enumerationValue>
                         <enumerationValue key="h1">Heading 1</enumerationValue>
                         <enumerationValue key="h2">Heading 2</enumerationValue>
                         <enumerationValue key="h3">Heading 3</enumerationValue>
