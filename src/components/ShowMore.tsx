@@ -1,4 +1,4 @@
-import { ReactElement, createElement, useState, useMemo, useRef } from "react";
+import { ReactElement, createElement, useState, useMemo, useRef, Fragment, useEffect } from "react";
 import { DynamicValue, WebIcon } from "mendix";
 
 export interface ShowMoreProps {
@@ -43,16 +43,16 @@ export function ShowMore({
     const textContainerRef = useRef<HTMLDivElement>(null);
 
     const buttonStyles: { [key: string]: string } = {
-        default: "btn btn-default",
-        inverse: "btn btn-inverse",
-        primary: "btn btn-primary",
-        info: "btn btn-info",
-        success: "btn btn-success",
-        warning: "btn btn-warning",
-        danger: "btn btn-danger"
+        default: "btn-default",
+        inverse: "btn-inverse",
+        primary: "btn-primary",
+        info: "btn-info",
+        success: "btn-success",
+        warning: "btn-warning",
+        danger: "btn-danger"
     };
 
-    const buttonClassName = `${buttonStyles[buttonDefaultStyling]} ${buttonExtraStyling || ""}`;
+    const buttonClassName = `mx-btn btn ${buttonStyles[buttonDefaultStyling]} ${buttonExtraStyling || ""}`;
     const linkClassName = `mx-link ${linkExtraStyling || ""}`;
     const textClassName = `${textExtraStyling || ""}`;
 
@@ -84,14 +84,14 @@ export function ShowMore({
     const toggleExpand = () => setIsExpanded(prev => !prev);
 
     const renderButton = () => (
-        <button className={buttonClassName} onClick={toggleExpand}>
+        <button className={buttonClassName} type="button" onClick={toggleExpand}>
             {isExpanded ? showLessText : showMoreText}
         </button>
     );
 
     const renderIcon = () => (
         <div style={{ cursor: "pointer", display: "inline-block" }} onClick={toggleExpand}>
-            <span className={isExpanded ? collapseIconClassName : expandIconClassName}></span>
+            <span className={isExpanded ? collapseIconClassName : expandIconClassName} aria-hidden="true"></span>
         </div>
     );
 
@@ -121,24 +121,8 @@ export function ShowMore({
         }
     };
 
-    if (buttonLinkIconPreviewMode === "previewMode") {
-        // Only show the truncated text and hide toggles in "previewMode".
         return (
-            <div className="mendixContainer">
-                {createElement(
-                    textType,
-                    {
-                        ref: textContainerRef,
-                        className: textClassName,
-                        style: lineClampStyle // Always apply truncation in preview mode
-                    },
-                    truncatedText
-                )}
-            </div>
-        );
-    } else {
-        return (
-            <div className="mendixContainer">
+            <div className="showmore-wrapper">
                 {createElement(
                     textType,
                     {
@@ -148,8 +132,7 @@ export function ShowMore({
                     },
                     isExpanded ? text : truncatedText
                 )}
-                {renderToggle()}
+                {buttonLinkIconPreviewMode !== "previewMode" && renderToggle()}
             </div>
         );
-    }
 }
