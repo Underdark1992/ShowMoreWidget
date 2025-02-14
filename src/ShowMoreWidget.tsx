@@ -5,7 +5,7 @@ import { ShowMoreWidgetContainerProps } from "../typings/ShowMoreWidgetProps";
 
 import "./ui/ShowMoreWidget.css";
 
-export function ShowMoreWidget(props: ShowMoreWidgetContainerProps): ReactElement {
+export default function ShowMoreWidget(props: ShowMoreWidgetContainerProps): ReactElement {
     return (
         <ShowMore
             myText={props.textArea}
