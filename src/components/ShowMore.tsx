@@ -1,4 +1,4 @@
-import { ReactElement, createElement, useState, useMemo, useRef, Fragment, useEffect } from "react";
+import { ReactElement, createElement, useState, useMemo, useRef } from "react";
 import { DynamicValue, WebIcon } from "mendix";
 
 export interface ShowMoreProps {
