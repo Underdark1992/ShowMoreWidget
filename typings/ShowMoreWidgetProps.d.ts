@@ -5,13 +5,13 @@
  */
 import { DynamicValue, WebIcon } from "mendix";
 
-export type TextTypeEnum = "div" | "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type TextRenderModeEnum = "div" | "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 export type HideByDefaultEnum = "true" | "false";
 
 export type TruncTypeEnum = "charCount" | "lineCount";
 
-export type ButtonLinkIconPreviewModeEnum = "previewMode" | "buttonType" | "iconType" | "linkType";
+export type ButtonRenderModeEnum = "none" | "buttonType" | "linkType";
 
 export type ButtonDisplayEnum = "default" | "inverse" | "primary" | "info" | "success" | "warning" | "danger";
 
@@ -20,21 +20,19 @@ export interface ShowMoreWidgetContainerProps {
     tabIndex?: number;
     id: string;
     textArea: DynamicValue<string>;
-    textType: TextTypeEnum;
+    textRenderMode: TextRenderModeEnum;
+    textClasses: string;
     hideByDefault: HideByDefaultEnum;
     truncType: TruncTypeEnum;
-    charInteger: number;
-    lineInteger: number;
-    buttonLinkIconPreviewMode: ButtonLinkIconPreviewModeEnum;
-    cardIconExpand?: DynamicValue<WebIcon>;
-    cardIconCollapse?: DynamicValue<WebIcon>;
+    charCount: number;
+    lineCount: number;
+    buttonRenderMode: ButtonRenderModeEnum;
     buttonDisplay: ButtonDisplayEnum;
-    showMore: string;
-    showLess: string;
-    buttonExtraStyling: string;
-    linkExtraStyling: string;
-    textExtraStyling: string;
-    iconExtraStyling: string;
+    buttonClasses: string;
+    cardIconExpand?: DynamicValue<WebIcon>;
+    showMoreText: string;
+    cardIconCollapse?: DynamicValue<WebIcon>;
+    showLessText: string;
 }
 
 export interface ShowMoreWidgetPreviewProps {
@@ -42,19 +40,17 @@ export interface ShowMoreWidgetPreviewProps {
     renderMode: "design" | "xray" | "structure";
     translate: (text: string) => string;
     textArea: string;
-    textType: TextTypeEnum;
+    textRenderMode: TextRenderModeEnum;
+    textClasses: string;
     hideByDefault: HideByDefaultEnum;
     truncType: TruncTypeEnum;
-    charInteger: number | null;
-    lineInteger: number | null;
-    buttonLinkIconPreviewMode: ButtonLinkIconPreviewModeEnum;
-    cardIconExpand: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; iconUrl: string; } | { type: "icon"; iconClass: string; } | undefined;
-    cardIconCollapse: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; iconUrl: string; } | { type: "icon"; iconClass: string; } | undefined;
+    charCount: number | null;
+    lineCount: number | null;
+    buttonRenderMode: ButtonRenderModeEnum;
     buttonDisplay: ButtonDisplayEnum;
-    showMore: string;
-    showLess: string;
-    buttonExtraStyling: string;
-    linkExtraStyling: string;
-    textExtraStyling: string;
-    iconExtraStyling: string;
+    buttonClasses: string;
+    cardIconExpand: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; iconUrl: string; } | { type: "icon"; iconClass: string; } | undefined;
+    showMoreText: string;
+    cardIconCollapse: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; iconUrl: string; } | { type: "icon"; iconClass: string; } | undefined;
+    showLessText: string;
 }

@@ -6,24 +6,22 @@ import { ValueStatus } from "mendix";
 export function preview({}: ShowMoreWidgetPreviewProps): ReactElement {
     return (
         <ShowMore
-            myText={{
+            textArea={{
                 status: ValueStatus.Available,
                 value: "undefined"
             }}
             charCount={0}
             lineCount={0}
             truncType={""}
-            buttonLinkIconPreviewMode={""}
+            buttonRenderMode={""}
             cardIconExpand={undefined}
             cardIconCollapse={undefined}
             showMoreText={""}
             showLessText={""}
-            textType={""}
-            buttonDefaultStyling={""}
-            buttonExtraStyling={""}
-            linkExtraStyling={""}
-            iconExtraStyling={""}
-            textExtraStyling={""}
+            textRenderMode={""}
+            buttonDisplay={""}
+            buttonClasses={""}
+            textClasses={""}
             hideByDefault={""}
         />
     );

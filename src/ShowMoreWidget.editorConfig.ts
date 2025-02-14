@@ -112,24 +112,18 @@ export function getProperties(
     */
 
     if(_values.truncType == "charCount") {
-        hidePropertiesIn(defaultProperties, _values, ["lineInteger", ]);
+        hidePropertiesIn(defaultProperties, _values, ["lineCount", ]);
         
     }
     else {
-        hidePropertiesIn(defaultProperties, _values, ["charInteger"]);
+        hidePropertiesIn(defaultProperties, _values, ["charCount"]);
     }
 
-    if(_values.buttonLinkIconPreviewMode == "linkType") {
-        hidePropertiesIn(defaultProperties, _values, ["buttonDisplay", "cardIconExpand", "cardIconCollapse"])
+    if(_values.buttonRenderMode == "linkType") {
+        hidePropertiesIn(defaultProperties, _values, ["buttonDisplay"])
     }
-    else if(_values.buttonLinkIconPreviewMode == "iconType") {
-        hidePropertiesIn(defaultProperties, _values, ["buttonDisplay", "showMore", "showLess"])
-    }
-    else if(_values.buttonLinkIconPreviewMode == "previewMode"){
-        hidePropertiesIn(defaultProperties, _values, ["cardIconExpand", "cardIconCollapse", "buttonDisplay", "showMore", "showLess"])
-    }
-    else {
-        hidePropertiesIn(defaultProperties, _values, ["cardIconExpand", "cardIconCollapse", ])
+    else if(_values.buttonRenderMode == "none"){
+        hidePropertiesIn(defaultProperties, _values, ["cardIconExpand", "cardIconCollapse", "buttonDisplay", "buttonClasses", "showMoreText", "showLessText"])
     }
 
     return defaultProperties;
@@ -137,23 +131,6 @@ export function getProperties(
 
 export function check(_values: ShowMoreWidgetPreviewProps): Problem[] {
     const errors: Problem[] = [];
-
-
-    if(_values.cardIconExpand == null && _values.buttonLinkIconPreviewMode == "iconType") {
-        errors.push({
-            property: "cardIconExpand",
-            message: "This is required.",
-            url: ""
-        })
-    }
-
-    if(_values.cardIconCollapse == null && _values.buttonLinkIconPreviewMode == "iconType") {
-        errors.push({
-            property: "cardIconCollapse",
-            message: "This is required.",
-            url: ""
-        })
-    }
     // Add errors to the above array to throw errors in Studio and Studio Pro.
     /* Example
     if (values.myProperty !== "custom") {

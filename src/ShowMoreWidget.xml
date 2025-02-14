@@ -15,7 +15,7 @@
                     <caption>Input Title</caption>
                     <description></description>
                 </property>
-                <property key="textType" type="enumeration" defaultValue="span">
+                <property key="textRenderMode" type="enumeration" defaultValue="span">
                     <caption>Render Mode</caption>
                     <description></description>
                     <enumerationValues>
@@ -29,6 +29,10 @@
                         <enumerationValue key="h5">Heading 5</enumerationValue>
                         <enumerationValue key="h6">Heading 6</enumerationValue>
                     </enumerationValues>
+                </property>
+                <property key="textClasses" type="string" required="false">
+                    <caption>Text Class</caption>
+                    <description></description>
                 </property>
             </propertyGroup>
             <propertyGroup caption="Truncate">
@@ -48,33 +52,24 @@
                         <enumerationValue key="lineCount">Line</enumerationValue>
                     </enumerationValues>
                 </property>
-                <property key="charInteger" type="integer" defaultValue="50">
+                <property key="charCount" type="integer" defaultValue="50">
                     <caption>Character Count</caption>
                     <description></description>
                 </property>
-                <property key="lineInteger" type="integer" defaultValue="3">
+                <property key="lineCount" type="integer" defaultValue="3">
                     <caption>Line Count</caption>
                     <description></description>
                 </property>
             </propertyGroup>
             <propertyGroup caption="Button">
-                <property key="buttonLinkIconPreviewMode" type="enumeration" defaultValue="buttonType">
+                <property key="buttonRenderMode" type="enumeration" defaultValue="buttonType">
                     <caption>Render Mode</caption>
                     <description></description>
                     <enumerationValues>
-                        <enumerationValue key="previewMode">Preview Mode</enumerationValue>
+                        <enumerationValue key="none">None</enumerationValue>
                         <enumerationValue key="buttonType">Button</enumerationValue>
-                        <enumerationValue key="iconType">Icon</enumerationValue>
                         <enumerationValue key="linkType">Link</enumerationValue>
                     </enumerationValues>
-                </property>
-                <property key="cardIconExpand" type="icon" required="false">
-                    <caption>Expand Icon</caption>
-                    <description></description>
-                </property>
-                <property key="cardIconCollapse" type="icon" required="false">
-                    <caption>Collapse Icon</caption>
-                    <description></description>
                 </property>
                 <property key="buttonDisplay" type="enumeration" defaultValue="default">
                     <caption>Button Style</caption>
@@ -89,47 +84,35 @@
                         <enumerationValue key="danger">Danger</enumerationValue>
                     </enumerationValues>
                 </property>
-            </propertyGroup>
-            <propertyGroup caption="Caption">
-                <property key="showMore" type="string" defaultValue="Show More">
-                    <caption>Expand</caption>
+                <property key="buttonClasses" type="string" required="false">
+                    <caption>Button Class</caption>
                     <description></description>
                 </property>
-                <property key="showLess" type="string" defaultValue="Show Less">
-                    <caption>Collapse</caption>
+            </propertyGroup>
+            <propertyGroup caption="Caption">
+                <property key="cardIconExpand" type="icon" required="false">
+                    <caption>Expand Icon</caption>
+                    <description></description>
+                </property>
+                <property key="showMoreText" type="string" defaultValue="Show More" required="false">
+                    <caption>Expand Caption</caption>
+                    <description></description>
+                </property>
+                <property key="cardIconCollapse" type="icon" required="false">
+                    <caption>Collapse Icon</caption>
+                    <description></description>
+                </property>
+                <property key="showLessText" type="string" defaultValue="Show Less" required="false">
+                    <caption>Collapse Caption</caption>
                     <description></description>
                 </property>
             </propertyGroup>
             <propertyGroup caption="Visibility">
                 <systemProperty key="Visibility" />
             </propertyGroup>
-            <propertyGroup caption="Editability">
-                <systemProperty key="Editability" />
-            </propertyGroup>
         </propertyGroup>
         <propertyGroup caption="Common">
             <systemProperty key="TabIndex"></systemProperty>
-        </propertyGroup>
-        <propertyGroup caption="Styling">
-            <propertyGroup caption="Style">
-                <property key="buttonExtraStyling" type="string" required="false">
-                    <caption>Button Style</caption>
-                    <description></description>
-                </property>
-                <property key="linkExtraStyling" type="string" required="false">
-                    <caption>Link Style</caption>
-                    <description></description>
-                </property>
-                <property key="textExtraStyling" type="string" required="false">
-                    <caption>Text Style</caption>
-                    <description></description>
-                </property>
-                <property key="iconExtraStyling" type="string" required="false">
-                    <caption>Icon Style</caption>
-                    <description>These will be appended to the selected button/link/icon/text style respectively.</description>
-                </property>
-
-            </propertyGroup>
         </propertyGroup>
     </properties>
 </widget>
