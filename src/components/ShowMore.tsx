@@ -1,68 +1,59 @@
-import { ReactElement, createElement, useState, useMemo, useRef } from "react";
-import { DynamicValue, WebIcon } from "mendix";
+import { ReactElement, createElement, useState, useMemo, useRef, Fragment } from "react";
+import { DynamicValue, ValueStatus, WebIcon } from "mendix";
+import { Icon } from "mendix/components/web/Icon";
 
 export interface ShowMoreProps {
-    myText: DynamicValue<string>;
+    textArea: DynamicValue<string>;
     charCount: number;
     lineCount: number;
     truncType: string;
-    buttonLinkIconPreviewMode: string;
+    buttonRenderMode: string;
     cardIconExpand?: DynamicValue<WebIcon>;
     cardIconCollapse?: DynamicValue<WebIcon>;
     showMoreText: string;
     showLessText: string;
-    textType: string;
-    buttonDefaultStyling: string;
-    buttonExtraStyling: string;
-    linkExtraStyling: string;
-    iconExtraStyling: string;
-    textExtraStyling: string;
+    textRenderMode: string;
+    buttonDisplay: string;
+    buttonClasses: string;
+    textClasses: string;
     hideByDefault: string;
+    tabIndex?: number
 }
 
 export function ShowMore({
-    myText,
+    textArea,
     charCount,
     lineCount,
     truncType,
-    buttonLinkIconPreviewMode,
+    buttonRenderMode,
     cardIconExpand,
     cardIconCollapse,
     showMoreText,
     showLessText,
-    textType,
-    buttonDefaultStyling,
-    buttonExtraStyling,
-    linkExtraStyling,
-    iconExtraStyling,
-    textExtraStyling,
-    hideByDefault
+    textRenderMode,
+    buttonDisplay,
+    buttonClasses,
+    textClasses,
+    hideByDefault,
+    tabIndex
 }: ShowMoreProps): ReactElement {
     const [isExpanded, setIsExpanded] = useState(hideByDefault !== "true");
-    const text = myText.value || "";
+    const text = textArea.value || "";
     const textContainerRef = useRef<HTMLDivElement>(null);
 
     const buttonStyles: { [key: string]: string } = {
-        default: "btn btn-default",
-        inverse: "btn btn-inverse",
-        primary: "btn btn-primary",
-        info: "btn btn-info",
-        success: "btn btn-success",
-        warning: "btn btn-warning",
-        danger: "btn btn-danger"
+        default: "btn-default",
+        inverse: "btn-inverse",
+        primary: "btn-primary",
+        info: "btn-info",
+        success: "btn-success",
+        warning: "btn-warning",
+        danger: "btn-danger"
     };
 
-    const buttonClassName = `${buttonStyles[buttonDefaultStyling]} ${buttonExtraStyling || ""}`;
-    const linkClassName = `mx-link ${linkExtraStyling || ""}`;
-    const textClassName = `${textExtraStyling || ""}`;
-
-    const expandIconClassName = `${
-        cardIconExpand?.value && "iconClass" in cardIconExpand.value ? cardIconExpand.value.iconClass : ""
-    } ${iconExtraStyling || ""}`;
-
-    const collapseIconClassName = `${
-        cardIconCollapse?.value && "iconClass" in cardIconCollapse.value ? cardIconCollapse.value.iconClass : ""
-    } ${iconExtraStyling || ""}`;
+    const buttonClassName = `mx-btn btn ${buttonStyles[buttonDisplay]} ${buttonClasses || ""}`;
+    const linkClassName = `mx-link ${buttonClasses || ""}`;
+    const textClassName = `${textClasses || ""}`;
 
     const lineClampStyle = useMemo(
         () => ({
@@ -81,18 +72,32 @@ export function ShowMore({
         return text; // For "lineCount", this assumes CSS handles the truncation.
     }, [truncType, text, charCount]);
 
-    const toggleExpand = () => setIsExpanded(prev => !prev);
+    const toggleExpand = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+        e.preventDefault();
+        setIsExpanded(prev => !prev);
+    }
 
+    const renderIcon = () => {
+        let toggledIcon = isExpanded ? cardIconCollapse : cardIconExpand;
+        if (toggledIcon == undefined || toggledIcon?.status !== ValueStatus.Available) return null;
+
+        return <Fragment>
+            <Icon
+                icon={toggledIcon.value}
+            >
+            </Icon>{" "}
+        </Fragment>;
+    }
     const renderButton = () => (
-        <button className={buttonClassName} onClick={toggleExpand}>
+        <button
+            className={buttonClassName}
+            type="button"
+            onClick={toggleExpand}
+            tabIndex={tabIndex}
+        >
+            {renderIcon()}
             {isExpanded ? showLessText : showMoreText}
         </button>
-    );
-
-    const renderIcon = () => (
-        <div style={{ cursor: "pointer", display: "inline-block" }} onClick={toggleExpand}>
-            <span className={isExpanded ? collapseIconClassName : expandIconClassName}></span>
-        </div>
     );
 
     const renderLink = () => (
@@ -100,56 +105,38 @@ export function ShowMore({
             className={linkClassName}
             role="button"
             href="#"
-            onClick={e => {
-                e.preventDefault();
-                toggleExpand();
-            }}
+            onClick={toggleExpand}
+            tabIndex={tabIndex}
         >
+            {renderIcon()}
             {isExpanded ? showLessText : showMoreText}
         </a>
     );
 
     const renderToggle = () => {
-        switch (buttonLinkIconPreviewMode) {
+        switch (buttonRenderMode) {
+            case "none":
+                return undefined;
             case "buttonType":
                 return renderButton();
-            case "iconType":
-                return renderIcon();
             case "linkType":
             default:
                 return renderLink();
         }
     };
 
-    if (buttonLinkIconPreviewMode === "previewMode") {
-        // Only show the truncated text and hide toggles in "previewMode".
-        return (
-            <div className="mendixContainer">
-                {createElement(
-                    textType,
-                    {
-                        ref: textContainerRef,
-                        className: textClassName,
-                        style: lineClampStyle // Always apply truncation in preview mode
-                    },
-                    truncatedText
-                )}
-            </div>
-        );
-    } else {
-        return (
-            <div className="mendixContainer">
-                {createElement(
-                    textType,
-                    {
-                        ref: textContainerRef,
-                        className: textClassName,
-                        style: isExpanded ? undefined : lineClampStyle
-                    },
-                    isExpanded ? text : truncatedText
-                )}
-                {renderToggle()}
-            </div>
-        );
-    }
+    return (
+        <div className="showmore-wrapper">
+            {createElement(
+                textRenderMode,
+                {
+                    ref: textContainerRef,
+                    className: textClassName,
+                    style: isExpanded ? undefined : lineClampStyle
+                },
+                isExpanded ? text : truncatedText
+            )}{" "}
+            {renderToggle()}
+        </div>
+    );
 }
