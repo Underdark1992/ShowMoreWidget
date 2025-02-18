@@ -1,6 +1,6 @@
 ## ShowMoreWidget
 
-A text widget which gives the ability to the developer to truncate text based on character count or lines. The widget supports string attributes and templates. 
+A text widget which gives the ability to the developer to truncate text based on character count or lines. The widget supports string attributes and templates.
 
 ## Features
 

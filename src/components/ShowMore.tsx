@@ -17,7 +17,7 @@ export interface ShowMoreProps {
     buttonClasses: string;
     textClasses: string;
     hideByDefault: string;
-    tabIndex?: number
+    tabIndex?: number;
 }
 
 export function ShowMore({
@@ -56,73 +56,65 @@ export function ShowMore({
     const textClassName = `${textClasses || ""}`;
 
     const lineClampStyle = useMemo(
-        () => ({
-            display: "-webkit-box",
-            overflow: "hidden",
-            WebkitLineClamp: lineCount,
-            WebkitBoxOrient: "vertical"
-        }),
-        [lineCount]
+        () =>
+            truncType === "lineCount"
+                ? {
+                      display: "-webkit-box",
+                      overflow: "hidden",
+                      WebkitLineClamp: lineCount,
+                      WebkitBoxOrient: "vertical"
+                  }
+                : {},
+        [truncType, lineCount]
     );
 
-    const truncatedText = useMemo(() => {
+    const isTruncated = useMemo(() => {
         if (truncType === "charCount") {
-            return text.length > charCount ? `${text.substring(0, charCount)}...` : text;
+            return text.length > charCount;
         }
-        return text; // For "lineCount", this assumes CSS handles the truncation.
+        // For lineCount, assume it requires CSS truncation (cannot directly measure lines in JS)
+        return true;
     }, [truncType, text, charCount]);
+
+    const truncatedText = useMemo(() => {
+        if (truncType === "charCount" && isTruncated) {
+            return `${text.substring(0, charCount)}...`;
+        }
+        return text;
+    }, [truncType, text, charCount, isTruncated]);
 
     const toggleExpand = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
         e.preventDefault();
         setIsExpanded(prev => !prev);
-    }
+    };
 
     const renderIcon = () => {
         let toggledIcon = isExpanded ? cardIconCollapse : cardIconExpand;
-        if (toggledIcon == undefined || toggledIcon?.status !== ValueStatus.Available) return null;
+        if (!toggledIcon || toggledIcon?.status !== ValueStatus.Available) return null;
+        return (
+            <Fragment>
+                <Icon icon={toggledIcon.value} />
+            </Fragment>
+        );
+    };
 
-        return <Fragment>
-            <Icon
-                icon={toggledIcon.value}
-            >
-            </Icon>{" "}
-        </Fragment>;
-    }
     const renderButton = () => (
-        <button
-            className={buttonClassName}
-            type="button"
-            onClick={toggleExpand}
-            tabIndex={tabIndex}
-        >
+        <button className={buttonClassName} type="button" onClick={toggleExpand} tabIndex={tabIndex}>
             {renderIcon()}
             {isExpanded ? showLessText : showMoreText}
         </button>
     );
 
     const renderLink = () => (
-        <a
-            className={linkClassName}
-            role="button"
-            href="#"
-            onClick={toggleExpand}
-            tabIndex={tabIndex}
-        >
+        <a className={linkClassName} role="button" href="#" onClick={toggleExpand} tabIndex={tabIndex}>
             {renderIcon()}
             {isExpanded ? showLessText : showMoreText}
         </a>
     );
 
     const renderToggle = () => {
-        switch (buttonRenderMode) {
-            case "none":
-                return undefined;
-            case "buttonType":
-                return renderButton();
-            case "linkType":
-            default:
-                return renderLink();
-        }
+        if (!isTruncated) return null; // If truncation is not needed, don't render toggle
+        return buttonRenderMode === "buttonType" ? renderButton() : renderLink();
     };
 
     return (
@@ -132,10 +124,10 @@ export function ShowMore({
                 {
                     ref: textContainerRef,
                     className: textClassName,
-                    style: isExpanded ? undefined : lineClampStyle
+                    style: isExpanded || !isTruncated ? undefined : lineClampStyle
                 },
-                isExpanded ? text : truncatedText
-            )}{" "}
+                isExpanded || !isTruncated ? text : truncatedText
+            )}
             {renderToggle()}
         </div>
     );
