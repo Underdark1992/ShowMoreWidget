@@ -85,7 +85,7 @@
                     </enumerationValues>
                 </property>
                 <property key="buttonClasses" type="string" required="false">
-                    <caption>Button Class</caption>
+                    <caption>Styling Class</caption>
                     <description></description>
                 </property>
             </propertyGroup>

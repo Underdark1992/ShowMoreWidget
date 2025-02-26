@@ -72,7 +72,6 @@ export function ShowMore({
         if (truncType === "charCount") {
             return text.length > charCount;
         }
-        // For lineCount, assume it requires CSS truncation (cannot directly measure lines in JS)
         return true;
     }, [truncType, text, charCount]);
 
