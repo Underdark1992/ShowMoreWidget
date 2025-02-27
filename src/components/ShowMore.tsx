@@ -123,7 +123,10 @@ export function ShowMore({
                 {
                     ref: textContainerRef,
                     className: textClassName,
-                    style: isExpanded || !isTruncated ? undefined : lineClampStyle
+                    style: {
+                        ...(!isExpanded && isTruncated ? lineClampStyle : {}),
+                        whiteSpace: "pre-wrap"
+                    }
                 },
                 isExpanded || !isTruncated ? text : truncatedText
             )}
